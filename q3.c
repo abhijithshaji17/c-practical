@@ -11,7 +11,6 @@ Write C programs to evaluate the following functions to $0.0001% accuracy.
 (c) SUM = 1 + (1/2)^2 + (1/3)^3 + (1/4)^4 + ...
 */
 
-
 // (a) sin x = x - x^3/3! + x^5/5! - x^7/7! + ...
 #include<stdio.h>
 #include<math.h>
@@ -32,7 +31,6 @@ int main(){
     printf("sin(%.2f rad) = %.8f\n",x,find_sin(x));
     return 0;
 }
-
 
 /*
 // (b) cos x = 1 - x^2/2! + x^4/4! - x^6/6! + ...
