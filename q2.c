@@ -53,7 +53,7 @@ float smallest(float a,float b,float c){
 }
 void average(float p,float q,float r){
     int V;
-    float avg = (p+q)/2;
+    float avg = (p+q+r)/3;
     printf("Average mark = %.2f",avg);
     V = (avg>r)?1:0;
     printf("\nV = %d\n",V);
