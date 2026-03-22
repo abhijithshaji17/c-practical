@@ -14,84 +14,94 @@ o/p (Output):
 Saddle Point = 3 at position 1st row 1st column.
 */
 
-#include<stdio.h>
-#include<limits.h>
-// Function to find the second largest element without sorting
-void find_SecondLargest(int a[100][100],int m,int n){
-    int i,j,first = INT_MIN, second = INT_MIN;
-    for(i=0;i<m;i++){
-        for(j=0;j<n;j++){
-            if(a[i][j]>first){
-                second = first;
-                first = a[i][j];
-            }else if(a[i][j]>second&&a[i][j]!=first){
-                second = a[i][j];
-            }
-        }
-    }
-    if(second==INT_MIN){
-        printf("\nNo second largest element found.");
-    }else{
-        printf("\nSecond largest element: %d",second);
-    }
-}
-// Function to find and display all saddle points
-void find_SaddlePoints(int a[100][100], int m, int n) {
-    int found = 0; // Declare 'found' here
+#include <stdio.h>
+// Prototypes
+int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx);
+int maxcol_check(int rows, int columns, int matrix[rows][columns], int col_idx);
+int second_largest(int rows, int columns, int matrix[rows][columns]);
+void saddle(int rows, int columns, int matrix[rows][columns]);
 
-    // We need to loop through every row 'i'
-    for (int i = 0; i < m; i++) {
-        
-        // Step 1: Find the minimum element in the current row (i)
-        int min_row = a[i][0];
-        int col_index = 0;
-        for (int j = 1; j < n; j++) {
-            if (a[i][j] < min_row) {
-                min_row = a[i][j];
-                col_index = j;
-            }
-        }
+int main() {
+    int m, n, i, j;
+    printf("Enter number of rows and columns: ");
+    if (scanf("%d %d", &m, &n) != 2) return 1;
 
-        // Step 2: Check if this min_row is the LARGEST in its column (col_index)
-        int is_saddle = 1; 
-        for (int k = 0; k < m; k++) {
-            if (a[k][col_index] > min_row) {
-                is_saddle = 0; // Found a larger number in the column
-                break;
-            }
-        }
+    int a[m][n]; 
 
-        // Step 3: If it passed the column test, it's a saddle point
-        if (is_saddle == 1) {
-            printf("\nSaddle point = %d at position Row %d, Column %d", min_row, i + 1, col_index + 1);
-            found = 1;
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+            printf("Element[%d%d]: ", i + 1, j + 1);
+            scanf("%d", &a[i][j]);
         }
     }
-
-    if (!found) {
-        printf("\nNo Saddle point exists in the matrix.");
-    }
-}
-int main(){
-    int m,n,i,j,a[100][100];
-    printf("Enter the number of rows and columns of matrix: ");
-    scanf("%d %d",&m,&n);
-    printf("Enter the matrix elements:\n");
-    for(i=0;i<m;i++){
-        for(j=0;j<n;j++){
-            printf("Element[%d%d]: ",i+1,j+1);
-            scanf("%d",&a[i][j]);
-        }
-    }
-    printf("Matrix:\n");
-    for(i=0;i<m;i++){
-        for(j=0;j<n;j++){
-            printf("%d\t",a[i][j]);
+    printf("\nMatrix:\n");
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+            printf("%d\t", a[i][j]);
         }
         printf("\n");
     }
-    find_SaddlePoints(a, m, n);
-    find_SecondLargest(a, m, n);
     printf("\n");
+    saddle(m, n, a);
+    int sl = second_largest(m, n, a);
+    int sl_row = sl / n;
+    int sl_col = sl % n;
+    printf("Second largest element at %d,%d = %d\n", sl_row + 1, sl_col + 1, a[sl_row][sl_col]);
     return 0;
+}
+int second_largest(int rows, int columns, int matrix[rows][columns]) {
+    // Better initialization: use the first element instead of a hardcoded constant
+    int first = matrix[0][0]; 
+    int second = -2147483647; // Smallest possible int
+    int first_idx = 0, second_idx = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (matrix[i][j] > first) {
+                second = first;
+                second_idx = first_idx;
+                first = matrix[i][j];
+                first_idx = (i * columns) + j;
+            } else if (matrix[i][j] > second && matrix[i][j] < first) {
+                second = matrix[i][j];
+                second_idx = (i * columns) + j;
+            }
+        }
+    }
+    return second_idx;
+}
+void saddle(int rows, int columns, int matrix[rows][columns]) {
+    int found = 0;
+    for (int i = 0; i < rows; i++) {
+        int min_col = minrow_check(rows, columns, matrix, i);
+        int max_row = maxcol_check(rows, columns, matrix, min_col);
+        if (max_row == i) {
+            found++;
+            printf("Saddle point at %d,%d = %d\n", i + 1, min_col + 1, matrix[i][min_col]);
+        }
+    }
+    if (found) printf("Found %d saddle points!\n", found);
+    else printf("Found no saddle points!\n");
+}
+
+int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx) {
+    int min_val = matrix[row_idx][0];
+    int min_col = 0;
+    for (int j = 1; j < columns; j++) {
+        if (matrix[row_idx][j] < min_val) {
+            min_val = matrix[row_idx][j];
+            min_col = j;
+        }
+    }
+    return min_col;
+}
+int maxcol_check(int rows, int columns, int matrix[rows][columns], int col_idx) {
+    int max_val = matrix[0][col_idx];
+    int max_row = 0;
+    for (int i = 1; i < rows; i++) {
+        if (matrix[i][col_idx] > max_val) {
+            max_val = matrix[i][col_idx];
+            max_row = i;
+        }
+    }
+    return max_row;
 }
