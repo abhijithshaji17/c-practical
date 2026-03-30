@@ -25,9 +25,7 @@ int main() {
     int m, n, i, j;
     printf("Enter number of rows and columns: ");
     if (scanf("%d %d", &m, &n) != 2) return 1;
-
     int a[m][n]; 
-
     for(i = 0; i < m; i++){
         for(j = 0; j < n; j++){
             printf("Element[%d%d]: ", i + 1, j + 1);
