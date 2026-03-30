@@ -46,9 +46,8 @@ int main(){
     return 0;
 }
 int second_largest(int rows, int columns, int matrix[rows][columns]) {
-    // Better initialization: use the first element instead of a hardcoded constant
     int first = matrix[0][0]; 
-    int second = -2147483647; // Smallest possible int
+    int second = -2147483647;
     int first_idx = 0, second_idx = 0;
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
