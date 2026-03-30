@@ -11,9 +11,9 @@ Write a C program to evaluate the following functions to $0.0001% accuracy.
 (c) SUM = 1 + (1/2)^2 + (1/3)^3 + (1/4)^4 + ...
 */
 
-#include <stdio.h>
-#include <math.h>
-int main() {
+#include<stdio.h>
+#include<math.h>
+int main(){
     double term, x;
     int n;
     double sinx = 0;

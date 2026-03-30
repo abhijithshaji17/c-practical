@@ -19,7 +19,7 @@ int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx);
 int maxcol_check(int rows, int columns, int matrix[rows][columns], int col_idx);
 int second_largest(int rows, int columns, int matrix[rows][columns]);
 void saddle(int rows, int columns, int matrix[rows][columns]);
-int main() {
+int main(){
     int m, n, i, j;
     printf("Enter number of rows and columns: ");
     if (scanf("%d %d", &m, &n) != 2) return 1;
