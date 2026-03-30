@@ -10,7 +10,7 @@ Distance between 2 points (x1,y1) and (x2,y2) is given by D = sqrt((x2-x1)^2 + (
 
 #include<stdio.h>
 #include<math.h>
-#define pi 3.14
+#define PI 3.14
 float radius();
 float area(float r);
 float perimeter(float r);
@@ -28,8 +28,8 @@ float radius(){
     return (float)(D/2.0);
 }
 float area(float r){
-    return (float)(pi*pow(r,2));
+    return (float)(PI*pow(r,2));
 }
 float perimeter(float r){
-    return (float)(2*pi*r);
+    return (float)(2*PI*r);
 }
