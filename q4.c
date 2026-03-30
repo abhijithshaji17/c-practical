@@ -14,7 +14,7 @@ o/p (Output):
 Saddle Point = 3 at position 1st row 1st column.
 */
 
-#include <stdio.h>
+#include<stdio.h>
 int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx);
 int maxcol_check(int rows, int columns, int matrix[rows][columns], int col_idx);
 int second_largest(int rows, int columns, int matrix[rows][columns]);
