@@ -15,12 +15,10 @@ Saddle Point = 3 at position 1st row 1st column.
 */
 
 #include <stdio.h>
-// Prototypes
 int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx);
 int maxcol_check(int rows, int columns, int matrix[rows][columns], int col_idx);
 int second_largest(int rows, int columns, int matrix[rows][columns]);
 void saddle(int rows, int columns, int matrix[rows][columns]);
-
 int main() {
     int m, n, i, j;
     printf("Enter number of rows and columns: ");
@@ -80,7 +78,6 @@ void saddle(int rows, int columns, int matrix[rows][columns]) {
     if (found) printf("Found %d saddle points!\n", found);
     else printf("Found no saddle points!\n");
 }
-
 int minrow_check(int rows, int columns, int matrix[rows][columns], int row_idx) {
     int min_val = matrix[row_idx][0];
     int min_col = 0;
