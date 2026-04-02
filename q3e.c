@@ -29,7 +29,7 @@ int main(){
         n += 2;
         if(fabs(term) < 0.0000001) break;
     }
-    printf("\nsin(%lf) : %lf\n", x, sinx);
+    printf("\nsin(%lf) = %lf\n", x, sinx);
     double cosx = 0;
     term = 1;
     n = 1;
@@ -41,7 +41,7 @@ int main(){
         n += 2;
         if(fabs(term) < 0.0000001) break;
     }
-    printf("\ncos(%lf) : %lf\n", x, cosx);
+    printf("\ncos(%lf) = %lf\n", x, cosx);
     double sum = 0;
     term = 1;
     n = 1;
@@ -53,6 +53,6 @@ int main(){
         n += 1;
         if(term < 0.0000001) break;
     }
-    printf("\nsum : %lf\n", sum);
+    printf("\nsum = %lf\n", sum);
     return 0;
 }
