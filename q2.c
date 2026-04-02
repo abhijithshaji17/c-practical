@@ -24,6 +24,7 @@ int main(){
     float s = smallest(m1,m2,m3);
     printf("%.2f is the lowest mark.\n",s);
     third = (m1+m2+m3) - (l+s);
+    printf("%.2f is the third number.\n",third);
     average(l,s,third);
     return 0;
 }
