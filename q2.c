@@ -8,13 +8,13 @@ Department = Department of Computer Science(DCS)
 Write program to read marks of three subjects out of 100 from user. Use seperate functions to
 (a) Find the largest among the numbers using nested if.
 (b) Find smallest among the numbers using if else if statements.
-(c) Calculate the average of the largest and smallest number and if the average is greater than third number assign the value one to a new variable V Otherwise assign a value 0 to the new variable V (use conditional operators here).
+(c) Calculate the average of the marks of 3 subjects and if average greater than or equal to 50 assign the value one to a new variable V Otherwise assign a value 0 to the new variable V (use conditional operators here).
 */
 
 #include<stdio.h>
 float largest(float,float,float);
 float smallest(float,float,float);
-void average(float,float,float);
+void average(float,float);
 int main(){
     float m1,m2,m3,third;
     printf("Enter the marks out of 100 of 3 subjects: ");
@@ -23,9 +23,10 @@ int main(){
     printf("%.2f is the highest mark.\n",l);
     float s = smallest(m1,m2,m3);
     printf("%.2f is the lowest mark.\n",s);
-    third = (m1+m2+m3) - (l+s);
-    printf("%.2f is the third number.\n",third);
-    average(l,s,third);
+    third = 50;
+    float avg = (m1+m2+m3)/3;
+    printf("%.2f is the average mark.\n",avg);
+    average(avg,third);
     return 0;
 }
 float largest(float x,float y,float z){
@@ -52,10 +53,8 @@ float smallest(float a,float b,float c){
         return c;
     }   
 }
-void average(float p,float q,float r){
+void average(float p,float q){
     int V;
-    float avg = (p+q+r)/3;
-    printf("Average mark = %.2f",avg);
-    V = (avg>r)?1:0;
+    V = (p>=q)?1:0;
     printf("\nV = %d\n",V);
 }

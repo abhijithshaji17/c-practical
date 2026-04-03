@@ -18,7 +18,7 @@ and produce the following output lists:
 
 #include<stdio.h>
 #include<string.h>
-struct Student{
+struct Student{ 
     int roll_no;
     char name[50];
     float marks;
